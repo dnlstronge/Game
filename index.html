@@ -18,8 +18,9 @@
         top: 0px;
         left: 0px;
         color: rgb(83, 175, 19);
-};
-    table {position: absolute;
+}
+    table {
+        position: absolute;
     left: 173px;
     top: 98px;
     border-spacing: 0px;    
@@ -40,6 +41,12 @@
         background-color: rgb(152, 207, 113);
         border-color: rgb(83, 175, 19);
         font-size: 1em;
+}
+.hit {
+    background: url("ship.png") no-repeat center center;
+}
+.miss {
+    background: url("miss.png") no-repeat center center;
 };
 
     </style>
@@ -53,7 +60,7 @@
                 <td id = "05"></td><td id = "06"></td>
             </tr>
             <tr>
-                <td id = "10"></td><td id = "11"></td><td id = "12"></td><td id = "13"></td><td id = "14"></td>
+                <td id = "10"></td><td id = "11"></td><td id = "12"></td><td id = "13" class="hit"></td><td id = "14"></td>
                 <td id = "15"></td><td id = "16"></td>
             </tr>
             <tr>
