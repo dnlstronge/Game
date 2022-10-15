@@ -45,7 +45,22 @@ var model = {
     //could these arrays be dynamic?
     ships: [{locations: ["06", "16", "26"], hits: ["", "", ""]},
             {locations: ["06", "16", "26"], hits: ["", "", ""]},
-            {locations: ["06", "16", "26"], hits: ["", "", ""]}] 
-}
+            {locations: ["06", "16", "26"], hits: ["", "", ""]}], 
+   
+            //Firing method/function
+
+    fire: function(guess) {
+        for (var i = 0; i  < this.numShips; i++) {
+            var ship = this.ships[i];
+            var locations = ship.locations;
+            var index = locations.indexOf(guess);
+        if (index >= 0) {
+            ship.hits[index] = "hit";
+            return true;
+        }
+        }
+        return false;
+    }
+};
 
 
