@@ -26,3 +26,17 @@ model.fire("12");
 model.fire("11");
 model.fire("10"); */
 
+/* test parse function
+
+console.log(parseGuess("A0"));  // output: 00   
+console.log(parseGuess("B6"));  // output: 16
+console.log(parseGuess("G3"));  // output: 63
+console.log(parseGuess("H0"));  // output: null
+console.log(parseGuess("A7"));  // output: null
+*/
+
+/* test guess event handler
+
+    controller.processGuess("A0");
+    controller.processGuess("B6");
+*/
