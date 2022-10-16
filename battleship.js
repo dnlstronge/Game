@@ -73,8 +73,40 @@ var model = {
 
         }
         return true;
+    },
+    generateShipsLocations: function() {
+        var locations;
+        for (var i = 0; i < this.numShips; i++) {
+            do {
+                locations = this.generateShip();
+            } while (this.collision(locations));
+            this.ships[i].locations = locations;
+            }
+        },
+    generateShip: function () {
+        var direction = Math.floor(Math.random() * 2);
+        var row;
+        var col;
+        if (direction === 1) {
+            row = Math.floor(Math.random() * this.boardSize);
+            col = Math.floor(Math.random()* (this.boardSize - (this.shipLength + 1)));
+        } else {
+            row = Math.floor(Math.random() * (this.boardSize - (this.shipLength + 1)));
+            col = Math.floor(Math.random() * this.boardSize);
+        }
+        var newShipLocations = [];
+        for (var i = 0; i < this.shipLength; i++) {
+          
+          if (direction === 1) {
+              newShipLocations.push(row + "" + (col + 1));
+        } else {
+              newShipLocations.push((row + 1) + "" + col);
+        }
+      }
+        return newShipsLocations;  
     }
-}
+    
+};
 
 // GAME CONTROLLER - player guesses etc
 
