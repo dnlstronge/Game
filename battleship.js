@@ -1,27 +1,5 @@
 //Game objects:
 
-//VIEW (display)
-
-var view = {
-    displayMessage: function(msg) {
-        var messageArea = document.getElementById("messageArea");
-        messageArea.innerHTML = msg;
-    },
-
-    // adds a ship img if location(guess) is a hit
-    displayHit: function(location) {
-        var cell = document.getElementById(location);
-        cell.setAttribute("class", "hit");
-       
-    },
-
-    //displays miss if location(guess) is a miss
-    displayMiss: function(location) {
-        var cell = document.getElementById(location)
-        cell.setAttribute("class", "miss");
-        
-    }
-};
 
 
 
@@ -35,9 +13,9 @@ var model = {
 
     //come back to these so they are at random
     //could these arrays be dynamic?
-    ships: [{locations: ["06", "16", "26"], hits: ["", "", ""]},
-            {locations: ["06", "16", "26"], hits: ["", "", ""]},
-            {locations: ["06", "16", "26"], hits: ["", "", ""]}
+    ships: [{locations: ["0", "0", "0"], hits: ["", "", ""]},
+            {locations: ["0", "0", "0"], hits: ["", "", ""]},
+            {locations: ["0", "0", "0"], hits: ["", "", ""]}
         ], 
    
             //Firing method/function
@@ -74,7 +52,7 @@ var model = {
         }
         return true;
     },
-    generateShipsLocations: function() {
+    generateShipLocations: function() {
         var locations;
         for (var i = 0; i < this.numShips; i++) {
             do {
@@ -103,12 +81,12 @@ var model = {
               newShipLocations.push((row + 1) + "" + col);
         }
       }
-        return newShipsLocations;  
+        return newShipLocations;  
     },
     collision: function(locations) {
         for (var i = 0; i < this.numShips; i++) {
             var ship = this.ships[i];
-            for (var j = 0; j < this.locations.length; j++) {
+            for (var j = 0; j < locations.length; j++) {
             if (ship.locations.indexOf(locations[j]) >= 0) {
                 return true;
             }
@@ -116,6 +94,28 @@ var model = {
       } 
       return false;
     } 
+};
+//VIEW (display)
+
+var view = {
+    displayMessage: function(msg) {
+        var messagesArea = document.getElementById("messagesArea");
+        messagesArea.innerHTML = msg;
+    },
+
+    // adds a ship img if location(guess) is a hit
+    displayHit: function(location) {
+        var cell = document.getElementById(location);
+        cell.setAttribute("class", "hit");
+       
+    },
+
+    //displays miss if location(guess) is a miss
+    displayMiss: function(location) {
+        var cell = document.getElementById(location)
+        cell.setAttribute("class", "miss");
+        
+    }
 };
 
 // GAME CONTROLLER - player guesses etc
@@ -189,4 +189,5 @@ function init() {
     fireButton.onclick = handleFireButton;
     var guessInput = document.getElementById("guessInput");
     guessInput.onkeypress = handleKeyPress;
+    model.generateShipLocations();
 }
