@@ -94,7 +94,7 @@ var controller = {
 }
 
 
-// EVENT HANDLERS
+// VALIDATE GUESS
 
 
 function parseGuess(guess) {
@@ -120,5 +120,31 @@ function parseGuess(guess) {
          return null;
 
     }
-    controller.processGuess("A0");
-    controller.processGuess("B6");
+// EVENT HANDLERS
+
+function handleFireButton() {
+   var guessInput = document.getElementById("guessInput");
+   var guess = guessInput.value;
+   controller.processGuess(guess);
+   guess.value = "";
+}
+function handleKeyPress(e) {
+	var fireButton = document.getElementById("fireButton");
+
+	// in IE9 and earlier, the event object doesn't get passed
+	// to the event handler correctly, so we use window.event instead.
+	e = e || window.event;
+
+	if (e.keyCode === 13) {
+		fireButton.click();
+		return false;
+	}
+}
+window.onload = init;
+
+function init() {
+    var fireButton = document.getElementById("fireButton");
+    fireButton.onclick = handleFireButton;
+    var guessInput = document.getElementById("guessInput");
+    guessInput.onkeypress = handleKeyPress;
+}
